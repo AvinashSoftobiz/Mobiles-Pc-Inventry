@@ -24,7 +24,14 @@ exports.getById = async(req, res)=>{
 }
 
 exports.insert= async(req, res)=>{
-
+    try{
+    var name= this.param.name;
+    var description= this. param.description;
+    const categoryCreate = await Category.create({ name, description});
+    res.status(200).send(categoryCreate);
+    }catch(e){
+        res.status(404).send(e.massage)
+    }
 }
 
 

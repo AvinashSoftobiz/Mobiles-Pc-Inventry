@@ -5,7 +5,7 @@ const Product = require('../models/product');
 exports.getAll = async (req, res) => {
     try {
         const productget = await Product.find({});
-        // res.status(200).render("inventory_list", { productget });
+        // res.status(200).render("product_list", { productget });
         res.status(200).send(productget);
     } catch (e) {
         res.status(404).send(e.massage);
@@ -28,11 +28,12 @@ exports.insertOne=async(req, res)=>{
     try{
     var productName= req.body.productName;
     var description= req.body. description;
-    let categories= mongoose.Types.ObjectId(req.body.id.trim());
+    // var ex=req.body.id;
+    let categories= mongoose.Types.ObjectId(req.body.id);
     let price = req.body.price;
     let noInStock   = req.body.noInStock;
-        const inventorycreate = await Inventory.create({ productName: productName, description: description, categories: categories, price: price, noInStock: noInStock });
-        res.status(200).send(inventorycreate);
+        const productcreate = await Product.create({ productName: productName, description: description, categories: categories, price: price, noInStock: noInStock });
+        res.status(200).send(productcreate);
     } catch (e) {
         res.status(404).send(e.message);
     }
