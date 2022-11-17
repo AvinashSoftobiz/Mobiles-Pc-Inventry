@@ -11,7 +11,4 @@ router.delete("/:id", productController.deleteOne)
 router.post("/insert", productController.insertOne)
 
 
-
-
-
 module.exports = router;

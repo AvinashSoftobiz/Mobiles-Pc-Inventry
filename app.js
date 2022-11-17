@@ -8,10 +8,14 @@ require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ProductRoutes= require('./routes/productRoutes');
+var categoryRoutes= require('./routes/categoryRoutes')
+
+
 
 var app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
+const category = require('./models/category');
 const mongoDB = `mongodb+srv://Avinashkumar:${process.env.DB_PASS}@mobiles.d6zkhl4.mongodb.net/mobiles?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -28,9 +32,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// router folder
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/product', ProductRoutes)
+app.use('/product', ProductRoutes);
+app.use('/category',categoryRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
