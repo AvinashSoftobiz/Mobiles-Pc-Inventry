@@ -11,4 +11,34 @@ exports.getAll = async (req, res) => {
     }
 }
 
+exports.getById = async(req, res)=>{
+    try{
+        console.log("avinash ",req.params.id);
+        // let id = req.params.id;
+        const category = await Category.where({ "_id": mongoose.Types.ObjectId(req.params.id.trim())});
+        console.log(category);
+        res.send(category);
+    } catch (e) {
+        res.send(e.massage);
+    }
+}
 
+exports.insert= async(req, res)=>{
+
+}
+
+
+
+exports.deleteOne= async(req, res)=>{
+    try {
+        
+        const categorydelete = await Category.deleteOne({ "_id": mongoose.Types.ObjectId(req.params.id.trim())} );
+        res.status(200).send(categorydelete);
+    } catch (e) {
+        res.status(404).send(e.massage);
+    }
+}
+
+exports.update= async(req, res)=>{
+
+}
