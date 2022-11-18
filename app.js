@@ -11,6 +11,11 @@ var ProductRoutes= require('./routes/productRoutes');
 var categoryRoutes= require('./routes/categoryRoutes')
 
 
+// multer
+
+
+
+
 
 var app = express();
 // Set up mongoose connection
